@@ -28,6 +28,7 @@ public class StreamLinerPanel extends JPanel{
 	private final JButton btnOutputLocation;
 	private final JButton btnRun;
 	private final JButton btnReadMe;
+	private final JButton btnAdvancedOptions;
 	private final JFileChooser fc;
 	
 	private final JPanel top;
@@ -37,6 +38,8 @@ public class StreamLinerPanel extends JPanel{
 	
 	private File source;
 	private File destination;
+	
+	private final AdvancedOptionsPanel aop = new AdvancedOptionsPanel();
 	
 	public StreamLinerPanel (){
 		
@@ -140,6 +143,15 @@ public class StreamLinerPanel extends JPanel{
 			        	JOptionPane.showMessageDialog(frame, "Unable to open README in your browser. Navigate to https://github.com/TristanBunyan/StreamLiner", "Error", JOptionPane.ERROR_MESSAGE);
 			        }
 			    }
+				
+			}
+		});
+		
+		btnAdvancedOptions = new JButton("Advanced Options");
+		btnAdvancedOptions.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
 				
 			}
 		});

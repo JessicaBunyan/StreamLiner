@@ -27,6 +27,9 @@ public class AdvancedOptionsPanel extends JPanel {
 	private final JPanel bottom = new JPanel();
 	
 	
+	
+	
+		
 	public AdvancedOptionsPanel(){
 		
 		frame = new JFrame("Advanced Options");
@@ -55,6 +58,14 @@ public class AdvancedOptionsPanel extends JPanel {
 		
 	}
 	
+
+	public int getStartTime(){
+		return 12;//TODO fix stub
+	}
+	public int getDuration(){
+		return 12;//TODO fix stub
+		
+	}
 	
 	
 }

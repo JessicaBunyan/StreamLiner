@@ -69,7 +69,7 @@ public class Reader {
 				players.add(new Player(ar));
 			}
 			
-			
+			reader.close();
 			return players;
 			
 			

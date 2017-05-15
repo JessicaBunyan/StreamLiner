@@ -10,7 +10,19 @@ Set the input and output locations and hit the "Generate Schedules" button and v
 
 ## Libraries 
 
-Requires Apache Commons, ITextPDF, OpenCSV
+The following libraries are required
+
+Apache Commons Lang   
+Apache Commons Math  
+https://commons.apache.org/downloads/index.html  
+
+ITextPDF  
+https://github.com/itext/itext7/releases/tag/7.0.2
+
+
+OpenCSV  
+https://sourceforge.net/projects/opencsv/
+
 
 ## Why?
 

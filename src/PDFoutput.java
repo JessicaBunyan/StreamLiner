@@ -61,7 +61,7 @@ public class PDFoutput {
 	
 	public PDFoutput(Tournament t, File destination){
 		
-		File f = new File(destination, "StreamLiner Pools");
+		File f = new File(destination, "StreamLiner Pools.pdf");
 		
 		try {
             Document document = new Document();

@@ -16,7 +16,7 @@ Apache Commons Lang
 Apache Commons Math  
 https://commons.apache.org/downloads/index.html  
 
-ItextPDF  
+ITextPDF  
 https://github.com/itext/itext7/releases/tag/7.0.2
 
 

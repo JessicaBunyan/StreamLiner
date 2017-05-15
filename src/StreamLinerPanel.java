@@ -1,7 +1,11 @@
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URI;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -23,6 +27,7 @@ public class StreamLinerPanel extends JPanel{
 	private final JButton btnInputLocation;
 	private final JButton btnOutputLocation;
 	private final JButton btnRun;
+	private final JButton btnReadMe;
 	private final JFileChooser fc;
 	
 	private final JPanel top;
@@ -116,18 +121,31 @@ public class StreamLinerPanel extends JPanel{
 		btnRun = new JButton("Create Schedules!");
 		btnRun.addActionListener(new ActionListener(){
 			public void actionPerformed (ActionEvent e){
-				if (source != null && destination != null) {
-					new Tournament(source, destination);
-					JOptionPane.showMessageDialog(frame, "Schedules created at " + destination.getAbsolutePath() + "\n press OK to close program");
-					frame.dispose();
-					System.exit(0);
-				}else{
-					JOptionPane.showMessageDialog(frame, "Please select input & output locations", "Error", JOptionPane.ERROR_MESSAGE);
-					
-				}
+				
+				createTournament();
+				
 			}
 		});
+		
+		btnReadMe = new JButton("README");
+		btnReadMe.addActionListener(new ActionListener(){
+			
+
+			public void actionPerformed(ActionEvent arg0) {
+				Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+			    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+			        try {
+			            desktop.browse(new URI("https://github.com/TristanBunyan/StreamLiner"));
+			        } catch (Exception e) {
+			        	JOptionPane.showMessageDialog(frame, "Unable to open README in your browser. Navigate to https://github.com/TristanBunyan/StreamLiner", "Error", JOptionPane.ERROR_MESSAGE);
+			        }
+			    }
+				
+			}
+		});
+		
 		bottom.add(btnRun);
+		bottom.add(btnReadMe);
 		
 		
 		this.add(top, BorderLayout.NORTH);
@@ -144,7 +162,35 @@ public class StreamLinerPanel extends JPanel{
 		
 //		new Tournament();
 	}
-	
+	private void createTournament(){
+		
+		if (source != null && destination != null) {
+			try {
+				new Tournament(source, destination);
+			} catch (HeadersException e) {
+				
+				JOptionPane.showMessageDialog(frame, "CSV file does not appear to be formatted correctly. See README for details", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+				
+			} catch (FileNotFoundException e2){
+				JOptionPane.showMessageDialog(frame, "File could not be found", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}catch (IOException e3){
+				JOptionPane.showMessageDialog(frame, "IO Error, is .csv file you selected currently in use?", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			
+			
+			JOptionPane.showMessageDialog(frame, "Schedules created at " + destination.getAbsolutePath() + "\n press OK to close program");
+			frame.dispose();
+			System.exit(0);
+		}else{
+			JOptionPane.showMessageDialog(frame, "Please select input & output locations", "Error", JOptionPane.ERROR_MESSAGE);
+			
+		}
+		
+	}
 	
 	
 	

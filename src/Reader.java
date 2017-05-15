@@ -18,7 +18,7 @@ public class Reader {
 
 	
 	
-	public ArrayList<Player> read(File f){
+	public ArrayList<Player> read(File f) throws FileNotFoundException, IOException, HeadersException{
 		
 		CSVReader reader = null;
 		int i = 0;
@@ -33,7 +33,7 @@ public class Reader {
 		
 		
 		
-		try {
+		
 			reader = new CSVReader(new FileReader(f));
 			String[] nextLine;
 			String[] headers;
@@ -74,28 +74,19 @@ public class Reader {
 			
 			
 			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		
-		return null;// if exception thrown
 		
 	}
 	
-	public void validateCSVHeaders(String[] headers) throws IOException{
+	public void validateCSVHeaders(String[] headers) throws HeadersException{
 		
 		if (headers.length != expectedHeaders.length){
-			throw new IOException();
+			throw new HeadersException();
 		}
 		
 		for (int i = 0; i< headers.length; i++){
 			if (!headers[i].equals(expectedHeaders[i])){
-				throw new IOException();
+				throw new HeadersException();
 			}
 		}
 		

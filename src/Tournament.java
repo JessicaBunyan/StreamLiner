@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,7 +19,7 @@ public class Tournament {
 	
 	
 	
-	public Tournament	(File source, File destination){
+	public Tournament	(File source, File destination) throws HeadersException, IOException{
 		
 		startTime = Calendar.getInstance();
 		startTime.set(Calendar.HOUR_OF_DAY, 12);//TODO fix hardcoding

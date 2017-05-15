@@ -1,9 +1,11 @@
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -25,6 +27,7 @@ public class StreamLinerPanel extends JPanel{
 	private final JButton btnInputLocation;
 	private final JButton btnOutputLocation;
 	private final JButton btnRun;
+	private final JButton btnReadMe;
 	private final JFileChooser fc;
 	
 	private final JPanel top;
@@ -123,7 +126,26 @@ public class StreamLinerPanel extends JPanel{
 				
 			}
 		});
+		
+		btnReadMe = new JButton("README");
+		btnReadMe.addActionListener(new ActionListener(){
+			
+
+			public void actionPerformed(ActionEvent arg0) {
+				Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+			    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+			        try {
+			            desktop.browse(new URI("https://github.com/TristanBunyan/StreamLiner"));
+			        } catch (Exception e) {
+			            e.printStackTrace();
+			        }
+			    }
+				
+			}
+		});
+		
 		bottom.add(btnRun);
+		bottom.add(btnReadMe);
 		
 		
 		this.add(top, BorderLayout.NORTH);

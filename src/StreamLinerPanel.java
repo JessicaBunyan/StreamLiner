@@ -137,7 +137,7 @@ public class StreamLinerPanel extends JPanel{
 			        try {
 			            desktop.browse(new URI("https://github.com/TristanBunyan/StreamLiner"));
 			        } catch (Exception e) {
-			            e.printStackTrace();
+			        	JOptionPane.showMessageDialog(frame, "Unable to open README in your browser. Navigate to https://github.com/TristanBunyan/StreamLiner", "Error", JOptionPane.ERROR_MESSAGE);
 			        }
 			    }
 				
